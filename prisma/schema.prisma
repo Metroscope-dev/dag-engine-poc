@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  name String
+  projectId Int
+  data  String
+
+  @@id([name, projectId])
+}
+
+model TimeSerie {
+  name String
+  projectId Int
+  description String
+
+  @@id([name, projectId])
+}
+
+model TimePoint {
+  time DateTime
+  projectId Int
+  timeSerieName String
+  data  String
+
+  @@id([time, projectId, timeSerieName])
+}
